@@ -1,0 +1,11 @@
+#!/bin/bash
+runuser -l ubuntu -c 'git clone git@github.com:illinoistech-itm/zsayed1.git'
+runuser -l ubuntu -c 'sudo mv zsayed1/ITMO-544/MP3/Front-end/*.js /var/www/html/'
+runuser -l ubuntu -c 'sudo mv zsayed1/ITMO-544/MP3/Front-end/*.css /var/www/html/'
+runuser -l ubuntu -c 'sudo mv zsayed1/ITMO-544/MP3/Backendfiles/*.php /var/www/html/'
+runuser -l ubuntu -c 'crontab -l > cronphp'
+runuser -l ubuntu -c 'echo "* * * * * /usr/bin/php -f /var/www/html/process.php;" >> cronphp'
+##runuser -l ubuntu -c 'echo "* * * * * sleep 15; /usr/bin/php -f /var/www/html/process.php; /usr/bin/php -f /var/www/html/index.php;" >> cronphp'
+runuser -l ubuntu -c 'echo "* * * * * sleep 30; /usr/bin/php -f /var/www/html/process.php;" >> cronphp'
+##runuser -l ubuntu -c 'echo "* * * * * sleep 45; /usr/bin/php -f /var/www/html/process.php; /usr/bin/php -f /var/www/html/index.php;" >> cronphp'
+runuser -l ubuntu -c 'crontab cronphp'
